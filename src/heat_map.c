@@ -31,6 +31,14 @@ void		heatmap(t_board *br)
 			x = 0;
 			while (x < br->w)
 			{
+				if (br->hm[y][x] == i && x + 1 < br->w && y + 1 < br->h && br->hm[y + 1][x + 1] != i && br->hm[y + 1][x + 1] == 0)
+					br->hm[y + 1][x + 1] = i + 1;
+				if (br->hm[y][x] == i && x + 1 < br->w && y - 1 > 0 && br->hm[y - 1][x + 1] != i && br->hm[y - 1][x + 1] == 0)
+					br->hm[y - 1][x + 1] = i + 1;
+				if (br->hm[y][x] == i && x - 1 >= 0 && y - 1 >= 0 && br->hm[y - 1][x - 1] != i && br->hm[y - 1][x - 1] == 0)
+					br->hm[y - 1][x - 1] = i + 1;
+				if (br->hm[y][x] == i && x - 1 >= 0 && y + 1 < br->h && br->hm[y + 1][x - 1] != i && br->hm[y + 1][x - 1] == 0)
+					br->hm[y + 1][x - 1] = i + 1;
 				if (br->hm[y][x] == i && x + 1 < br->w && br->hm[y][x + 1] != i && br->hm[y][x + 1] == 0)
 					br->hm[y][x + 1] = i + 1;
 				if (br->hm[y][x] == i && x - 1 >= 0 && br->hm[y][x - 1] != i && br->hm[y][x - 1] == 0)

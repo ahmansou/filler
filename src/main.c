@@ -38,8 +38,10 @@ int main()
 					ft_putstr_fd(" ", fd);
 			}
 			ft_putnbr_fd(board.hm[i][j], fd);
+			ft_putstr_fd(" ", fd);
 			j++;
 		}
+		ft_putendl_fd("", fd);
 		ft_putendl_fd("", fd);
 		i++;
 	}
