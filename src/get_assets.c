@@ -6,15 +6,15 @@ static void	get_board(t_board *board, char *line)
 	int		i;
 
 	tmp = line + 8;
-	board->height = ft_atoi(tmp);
+	board->h = ft_atoi(tmp);
 	while (*tmp >= '0' && *tmp <= '9')
 		tmp++;
-	board->width = ft_atoi(tmp + 1);
-	board->m = (char**)malloc(sizeof(char*) * (board->height + 1));
+	board->w = ft_atoi(tmp + 1);
+	board->m = (char**)malloc(sizeof(char*) * (board->h + 1));
 	i = 0;
 	get_next_line(0, &line);
 	ft_strdel(&line);
-	while (i < board->height)
+	while (i < board->h)
 	{
 		get_next_line(0, &line);
 		board->m[i] =  ft_strdup(line + 4);
@@ -24,19 +24,19 @@ static void	get_board(t_board *board, char *line)
 	board->m[i] = 0;
 }
 
-static void	get_piece(t_board	*pc, char *line)
+static void	get_piece(t_piece	*pc, char *line)
 {
 	char	*tmp;
 	int		i;
 
 	tmp = line + 6;
-	pc->height = ft_atoi(tmp);
+	pc->h = ft_atoi(tmp);
 	while (*tmp >= '0' && *tmp <= '9')
 		tmp++;
-	pc->width = ft_atoi(tmp + 1);
-	pc->m = (char**)malloc(sizeof(char*) * (pc->height + 1));
+	pc->w = ft_atoi(tmp + 1);
+	pc->m = (char**)malloc(sizeof(char*) * (pc->h + 1));
 	i = 0;
-	while (i < pc->height)
+	while (i < pc->h)
 	{
 		get_next_line(0, &line);
 		pc->m[i] = ft_strdup(line);
@@ -46,7 +46,48 @@ static void	get_piece(t_board	*pc, char *line)
 	pc->m[i] = 0;
 }
 
-void		get_assets(t_board *board, t_board *pc, t_player *p, t_player *e)
+static void	heatmap(t_board *br)
+{
+	int i;
+	int x;
+	int y;
+
+	i = 2;
+	y = 0;
+	while (y < br->h)
+	{
+		x = 0;
+		while (x < br->w)
+		{
+			if (br->hm[y - 1][x] == 1 && y - 1 >= 0 && y - 1 < br->h)
+				br->hm[y][x] = 2;
+				// break ;
+			x++;
+		}
+		y++;
+	}	
+}
+
+static void init_heatmap(t_board *br, t_player e)
+{
+	int x;
+	int y;
+
+	br->hm = (int**)malloc(sizeof(int*) * (br->h));
+	y = -1;
+	while (++y < br->h && (x = -1))
+	{
+		br->hm[y] = (int*)malloc(sizeof(int) * (br->w));
+		while (++x < br->w)
+		{
+			br->hm[y][x] = 0;
+			if (br->m[y][x] == e.l || br->m[y][x] == e.l + 32)
+				br->hm[y][x] = 1;
+		}
+	}
+}
+
+void		get_assets(t_board *board, t_piece *pc, t_player *p, t_player *e)
 {
 	char		*line;
 	
@@ -66,4 +107,6 @@ void		get_assets(t_board *board, t_board *pc, t_player *p, t_player *e)
 		}
 		ft_strdel(&line);
 	}
+	init_heatmap(board, *e);
+	heatmap(board);
 }

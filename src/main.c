@@ -3,10 +3,11 @@
 int main()
 {
 	t_board		board;
-	t_board		pc;
+	t_piece		pc;
 	t_player	p;
 	t_player	e;
 	int			i;
+	int 		j;
 	int			fd;
 
 	fd = open("output", O_WRONLY);
@@ -20,11 +21,28 @@ int main()
 	ft_putchar_fd(p.l, fd);
 	ft_putendl_fd("\nboard :", fd);
 	i = 0;
-	while (i < board.height)
+	while (i < board.h)
 		ft_putendl_fd(board.m[i++], fd);
+	ft_putendl_fd("", fd);
+	ft_putendl_fd("\nheat map :", fd);
+	i = 0;
+	while (i < board.h)
+	{
+		j = 0;
+		while (j < board.w)
+		{
+			ft_putnbr_fd(board.hm[i][j], fd);
+			// if (board.hm[i][j] < 10)
+			// 	ft_putchar_fd(' ', fd);
+			j++;
+		}
+		ft_putendl_fd("", fd);
+		i++;
+	}
+	ft_putendl_fd("", fd);
 	i = 0;
 	ft_putendl_fd("piece :", fd);
-	while (i < pc.height)
+	while (i < pc.h)
 		ft_putendl_fd(pc.m[i++], fd);
 	free2d(pc.m);
 	free2d(board.m);
