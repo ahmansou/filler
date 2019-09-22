@@ -16,15 +16,15 @@ int main()
 
 	ft_putstr_fd("2 8\n", 1);
 
-	ft_putendl_fd("", fd);
-	ft_putstr_fd("player : ", fd);
-	ft_putchar_fd(p.l, fd);
-	ft_putendl_fd("\nboard :", fd);
-	i = 0;
-	while (i < board.h)
-		ft_putendl_fd(board.m[i++], fd);
-	ft_putendl_fd("", fd);
-	ft_putendl_fd("\nheat map :", fd);
+	// ft_putendl_fd("", fd);
+	// ft_putstr_fd("player : ", fd);
+	// ft_putchar_fd(p.l, fd);
+	// ft_putendl_fd("\nboard :", fd);
+	// i = 0;
+	// while (i < board.h)
+	// 	ft_putendl_fd(board.m[i++], fd);
+	// ft_putendl_fd("", fd);
+	// ft_putendl_fd("\nheat map :", fd);
 	i = 0;
 	while (i < board.h)
 	{
@@ -42,14 +42,14 @@ int main()
 			j++;
 		}
 		ft_putendl_fd("", fd);
-		ft_putendl_fd("", fd);
+		// ft_putendl_fd("", fd);
 		i++;
 	}
-	ft_putendl_fd("", fd);
-	i = 0;
-	ft_putendl_fd("piece :", fd);
-	while (i < pc.h)
-		ft_putendl_fd(pc.m[i++], fd);
+	// ft_putendl_fd("", fd);
+	// i = 0;
+	// ft_putendl_fd("piece :", fd);
+	// while (i < pc.h)
+	// 	ft_putendl_fd(pc.m[i++], fd);
 	free2d(pc.m);
 	free2d(board.m);
 	return(0);
