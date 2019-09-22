@@ -45,7 +45,7 @@ typedef	struct	s_coor
 int		get_next_line(const int fd, char **line);
 void	get_assets(t_board *board, t_piece *pc, t_player *p, t_player *e);
 void	free2d(char **s);
-// void	heatmap(t_board *br, t_player p, t_player e);
+void	heatmap(t_board *br);
 
 #endif
 

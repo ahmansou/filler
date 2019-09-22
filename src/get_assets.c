@@ -46,28 +46,6 @@ static void	get_piece(t_piece	*pc, char *line)
 	pc->m[i] = 0;
 }
 
-static void	heatmap(t_board *br)
-{
-	int i;
-	int x;
-	int y;
-
-	i = 2;
-	y = 0;
-	while (y < br->h)
-	{
-		x = 0;
-		while (x < br->w)
-		{
-			if (br->hm[y - 1][x] == 1 && y - 1 >= 0 && y - 1 < br->h)
-				br->hm[y][x] = 2;
-				// break ;
-			x++;
-		}
-		y++;
-	}	
-}
-
 static void init_heatmap(t_board *br, t_player e)
 {
 	int x;

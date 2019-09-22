@@ -31,9 +31,13 @@ int main()
 		j = 0;
 		while (j < board.w)
 		{
+			if (board.hm[i][j] < 100)
+			{
+				ft_putstr_fd(" ", fd);
+				if (board.hm[i][j] < 10)
+					ft_putstr_fd(" ", fd);
+			}
 			ft_putnbr_fd(board.hm[i][j], fd);
-			// if (board.hm[i][j] < 10)
-			// 	ft_putchar_fd(' ', fd);
 			j++;
 		}
 		ft_putendl_fd("", fd);
