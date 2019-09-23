@@ -19,14 +19,23 @@ typedef struct	s_board
 	int		h;
 }				t_board;
 
+typedef struct s_score
+{
+	int x;
+	int y;
+	int score;
+}				t_score;
+
 
 typedef struct	s_piece
 {
 	char	**m;
 	int		w;
 	int		h;
-	int		rl_wd;
-	int		rl_hi;
+	int		xmin;
+	int		xmax;
+	int		ymin;
+	int		ymax;
 }				t_piece;
 
 typedef struct	s_player
