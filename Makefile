@@ -1,6 +1,6 @@
 NAME = ahmansou.filler
 
-SRCS = src/main.c src/get_assets.c src/get_next_line.c src/misc.c
+SRCS = src/main.c src/get_assets.c src/get_next_line.c src/misc.c src/heat_map.c
 
 # OBJS = obj/main.o obj/get_assets.o obj/get_next_line.o obj/misc.o
 
