@@ -22,10 +22,10 @@ static void	init_scores(t_score *score)
 static int	it_touchs(t_piece *pc)
 {
 	pc->ytouch = pc->ymin;
-	while (pc->ytouch < pc->ymax)
+	while (pc->ytouch <= pc->ymax)
 	{
 		pc->xtouch = pc->xmin;
-		while (pc->xtouch < pc->xmax)
+		while (pc->xtouch <= pc->xmax)
 		{
 			if (pc->m[pc->ytouch][pc->xtouch] == '*')
 				return (1);
@@ -56,25 +56,25 @@ void			attack(t_board br, t_piece *pc, t_player p, t_player e, int fd)
 		x = 0;
 		while (x < br.w)
 		{
-			if (br.m[y][x] == p.l && it_touchs(pc))
-			// if (br.m[y][x] == p.l)
+			if (br.m[y][x] == p.l)
 			{
 				ft_putstr_fd("\n[", fd);
-				ft_putnbr_fd(x - pc->xmin, fd);
+				ft_putnbr_fd(y - pc->ymin - pc->ytouch, fd);
 				ft_putstr_fd(", ", fd);
-				ft_putnbr_fd(y - pc->ymin, fd);
-				ft_putendl_fd("]", fd);
-				ft_putnbr_fd(y - pc->ymin, 1);
-				ft_putstr_fd(" ", 1);
-				ft_putnbr_fd(x - pc->xmin, 1);
-				ft_putstr_fd("\n", 1);
-				return ;
+				ft_putnbr_fd(x - pc->xmin - pc->xtouch, fd);
+				ft_putstr_fd("]", fd);
+				if (it_touchs(pc))
+				{
+					ft_putendl_fd("touchi", fd);
+					ft_putnbr_fd(y - pc->ymin - pc->ytouch, 1);
+					ft_putstr_fd(" ", 1);
+					ft_putnbr_fd(x - pc->xmin - pc->xtouch, 1);
+					ft_putstr_fd("\n", 1);
+					return ;
+				}
+				else
+					ft_putendl_fd("no touchi", fd);
 			}
-			else if (br.m[y][x] == p.l && !it_touchs(pc))
-			{
-				ft_putstr_fd("0 0\n", 1);
-			}
-			
 			x++;
 		}
 		y++;
