@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_assets.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahmansou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/24 14:25:20 by ahmansou          #+#    #+#             */
+/*   Updated: 2019/09/24 14:25:24 by ahmansou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
 static void	get_board(t_board *board, char *line)
@@ -46,25 +58,6 @@ static void	get_piece(t_piece	*pc, char *line)
 	pc->m[i] = 0;
 }
 
-static void init_heatmap(t_board *br, t_player e)
-{
-	int x;
-	int y;
-
-	br->hm = (int**)malloc(sizeof(int*) * (br->h));
-	y = -1;
-	while (++y < br->h && (x = -1))
-	{
-		br->hm[y] = (int*)malloc(sizeof(int) * (br->w));
-		while (++x < br->w)
-		{
-			br->hm[y][x] = 0;
-			if (br->m[y][x] == e.l || br->m[y][x] == e.l + 32)
-				br->hm[y][x] = 1;
-		}
-	}
-}
-
 void		get_assets(t_board *board, t_piece *pc, t_player *p, t_player *e)
 {
 	char		*line;
@@ -85,6 +78,5 @@ void		get_assets(t_board *board, t_piece *pc, t_player *p, t_player *e)
 		}
 		ft_strdel(&line);
 	}
-	init_heatmap(board, *e);
-	heatmap(board);
+	heatmap(board, *e);
 }

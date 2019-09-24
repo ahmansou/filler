@@ -18,9 +18,11 @@ static void	init_pc(t_piece *pc)
 	pc->xmin = 100;
 	pc->ymax = 0;
 	pc->ymin = 100;
+	pc->xtouch = 0;
+	pc->ytouch = 0;
 }
 
-static void	get_lims(t_piece *pc)
+void	get_lims(t_piece *pc)
 {
 	int x; 
 	int y;
@@ -35,17 +37,11 @@ static void	get_lims(t_piece *pc)
 				pc->xmax = (x > pc->xmax) ? x : pc->xmax;
 			}
 	y = pc->h;
-	while (--y < pc->h && (x =pc->w))
-		while (--x < pc->w)
+	while (--y >= 0 && (x =pc->w))
+		while (--x >= 0)
 			if (pc->m[y][x] == '*')
 			{
-				pc->ymin = (y > pc->ymin) ? y : pc->ymin;
-				pc->xmin = (x > pc->xmin) ? x : pc->xmin;
+				pc->ymin = (y < pc->ymin) ? y : pc->ymin;
+				pc->xmin = (x < pc->xmin) ? x : pc->xmin;
 			}
-}
-
-void		pc_proc(t_piece *pc)
-{
-	int x;
-	int y;
 }

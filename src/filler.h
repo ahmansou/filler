@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   filler.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahmansou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/24 14:26:15 by ahmansou          #+#    #+#             */
+/*   Updated: 2019/09/24 14:26:18 by ahmansou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef FILLER_H
 # define FILLER_H
@@ -32,6 +43,8 @@ typedef struct	s_piece
 	char	**m;
 	int		w;
 	int		h;
+	int		xtouch;
+	int		ytouch;
 	int		xmin;
 	int		xmax;
 	int		ymin;
@@ -54,7 +67,10 @@ typedef	struct	s_coor
 int		get_next_line(const int fd, char **line);
 void	get_assets(t_board *board, t_piece *pc, t_player *p, t_player *e);
 void	free2d(char **s);
-void	heatmap(t_board *br);
+void	free2dint(int **s);
+void	heatmap(t_board *br, t_player e);
+void	get_lims(t_piece *pc);
+void		attack(t_board br, t_piece *pc, t_player e, t_player p, int fd);
 
 #endif
 
