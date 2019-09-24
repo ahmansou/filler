@@ -75,6 +75,7 @@ int main()
 	exit(0);
 	free2d(pc.m);
 	free2d(board.m);
+	ft_putnbr_fd(remove("output"), fd);
 	// free2dint(board.hm);
 	// ft_putstr_fd("12 14\n", 1);
 	// ft_putstr_fd("8 2\n", 1);

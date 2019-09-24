@@ -58,7 +58,8 @@ void			attack(t_board br, t_piece *pc, t_player p, t_player e, int fd)
 		{
 			if (br.m[y][x] == p.l)
 			{
-				if (it_touchs(pc))
+				// if (it_touchs(pc))
+				if (it_touchs(pc) && it_fits(*pc, br, x, y))
 				{
 					ft_putstr_fd("\n[", fd);
 					ft_putnbr_fd(y - pc->ytouch, fd);
