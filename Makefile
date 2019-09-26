@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ahmansou <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/09/26 14:23:41 by ahmansou          #+#    #+#              #
+#    Updated: 2019/09/26 14:23:43 by ahmansou         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = ahmansou.filler
 
 SRCS = src/main.c src/get_assets.c \
@@ -5,22 +17,23 @@ SRCS = src/main.c src/get_assets.c \
 		src/heat_map.c src/piece_proc.c \
 		src/attack.c
 
-# OBJS = obj/main.o obj/get_assets.o obj/get_next_line.o obj/misc.o
-
 OBJS = $(SRCS:.c=.o) 
 
 FLG = -Wall -Werror -Wextra
 
 $(NAME): $(OBJS)	
-	make -C libft	
-	gcc -o $(NAME) $(FLG) $(OBJS) libft/libft.a	
+	make -C libft
+	make -C ft_printf
+	gcc -o $(NAME) $(FLG) $(OBJS) libft/libft.a	ft_printf/libftprintf.a
 	
 clean:
 	make clean -C libft	
+	make clean -C ft_printf	
 	rm -f $(OBJS)
 
 fclean: clean
 	make fclean -C libft
+	make fclean -C ft_printf	
 	rm -f $(NAME) 
 
 re: fclean all

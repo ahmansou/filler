@@ -78,5 +78,5 @@ void		get_assets(t_board *board, t_piece *pc, t_player *p, t_player *e)
 		}
 		ft_strdel(&line);
 	}
-	heatmap(board, *e);
+	heatmap(board, *e, *p);
 }

@@ -72,7 +72,22 @@ static void	fill_hm(t_board *br, int x, int y, int i)
 		br->hm[y - 1][x] = i + 1;
 }
 
-void		heatmap(t_board *br, t_player e)
+static void	clear_pos(t_board *br, t_player p)
+{
+	int x;
+	int y;
+
+	y = -1;
+	while (++y < br->h)
+	{
+		x = -1;
+		while (++x < br->w)
+			if (br->m[y][x] == p.l)
+				br->hm[y][x] = 0;
+	}
+}
+
+void		heatmap(t_board *br, t_player e, t_player p)
 {
 	int i;
 	int x;
@@ -87,4 +102,5 @@ void		heatmap(t_board *br, t_player e)
 				fill_hm(br, x, y, i);
 		i++;
 	}
+	clear_pos(br, p);
 }
