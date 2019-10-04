@@ -18,8 +18,6 @@ static void	init_pc(t_piece *pc)
 	pc->xmin = 100;
 	pc->ymax = 0;
 	pc->ymin = 100;
-	pc->xtouch = 0;
-	pc->ytouch = 0;
 }
 
 void	get_lims(t_piece *pc)

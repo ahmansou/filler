@@ -29,50 +29,38 @@ typedef struct	s_board
 	int		**hm;
 	int		w;
 	int		h;
+	char	p;
+	char	e;
 }				t_board;
-
-typedef struct s_score
-{
-	int x;
-	int y;
-	int score;
-}				t_score;
-
 
 typedef struct	s_piece
 {
 	char	**m;
 	int		w;
 	int		h;
-	int		xtouch;
-	int		ytouch;
 	int		xmin;
 	int		xmax;
 	int		ymin;
 	int		ymax;
 }				t_piece;
 
-typedef struct	s_player
+typedef struct s_score
 {
-	char	l;
-	int		ix;
-	int		iy;
-}				t_player;
-
-typedef	struct	s_coor
-{
-	int	x;
+	int x;
 	int y;
-}				t_coor;
+	int score;
+	int s;
+}				t_score;
 
 int		get_next_line(const int fd, char **line);
-void	get_assets(t_board *board, t_piece *pc, t_player *p, t_player *e);
+void	get_player(t_board *board);
+void	get_assets(t_board *board, t_piece *pc);
 void	free2d(char **s);
 void	free2dint(int **s);
-void	heatmap(t_board *br, t_player e, t_player p);
+void	heatmap(t_board *br);
 void	get_lims(t_piece *pc);
-void	attack(t_board br, t_piece *pc, t_player e, t_player p, int fd);
-void	print_coor(int x, int y);
+void	attack(t_board br, t_piece *pc, int fd);
+void	put_coor(int x, int y);
 
 #endif
 

@@ -21,19 +21,19 @@ OBJS = $(SRCS:.c=.o)
 
 FLG = -Wall -Werror -Wextra
 
-$(NAME): $(OBJS)	
+$(NAME): $(OBJS)
 	make -C libft
 	make -C ft_printf
-	gcc -o $(NAME) $(FLG) $(OBJS) libft/libft.a	ft_printf/libftprintf.a
+	gcc -o $(NAME) $(FLG) $(OBJS) libft/libft.a ft_printf/libftprintf.a
 	
 clean:
 	make clean -C libft	
-	make clean -C ft_printf	
+	make clean -C ft_printf
 	rm -f $(OBJS)
 
 fclean: clean
 	make fclean -C libft
-	make fclean -C ft_printf	
+	make fclean -C ft_printf
 	rm -f $(NAME) 
 
 re: fclean all

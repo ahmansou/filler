@@ -32,7 +32,7 @@ void	free2dint(int **s)
 	free(s);
 }
 
-void	print_coor(int x, int y)
+void	put_coor(int x, int y)
 {
 	ft_putnbr_fd(y, 1);
 	ft_putstr_fd(" ", 1);

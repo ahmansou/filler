@@ -12,52 +12,49 @@
 
 #include "filler.h"
 
-static int	it_touches(t_piece *pc, t_board br, t_player p, int c[])
+static int	it_touches(t_piece *pc, t_board br, int c[])
 {
-	int xtmp;
-	int y;
+	int px;
+	int py;
 	int x;
+	int y;
 
 	y = c[0];
-	x = c[1];
-	pc->ytouch = pc->ymin;
-	while (pc->ytouch <= pc->ymax)
+	py = pc->ymin;
+	while (py <= pc->ymax && y < br.h)
 	{
-		pc->xtouch = pc->xmin;
-		xtmp = x;
-		while (pc->xtouch <= pc->xmax)
+		px = pc->xmin;
+		x = c[1];
+		while (px <= pc->xmax && x < br.w)
 		{
-			if (pc->m[pc->ytouch][pc->xtouch] == '*' && br.m[y][xtmp] == p.l)
+			if (pc->m[py][px] == '*' && br.m[y][x] == br.p)
 				return (1);
-			pc->xtouch++;
-			xtmp++;
+			px++;
+			x++;
 		}
-		pc->ytouch++;
+		py++;
 		y++;
 	}
 	return (0);
 }
 
-static int	it_fits(t_piece pc, t_board br, t_player e, int c[])
+static int	it_fits(t_piece pc, t_board br, int c[])
 {
-	int xtmp;
 	int	px;
 	int	py;
-	int y;
 	int x;
+	int y;
 
-	y = c[0];
-	x = c[1];
+	y = c[0] - 1;
 	if (pc.xmax < br.w && pc.xmin >= 0 && pc.ymax < br.h && pc.ymin >= 0)
 	{
 		py = pc.ymin - 1;
-		y--;
-		while (++py + (++y * 0) <= pc.ymax)
+		while (++py + (++y * 0) <= pc.ymax && ++y < br.h)
 		{
 			px = pc.xmin - 1;
-			xtmp = x - 1;
-			while (++px + (++xtmp * 0) <= pc.xmax)
-				if (pc.m[py][px] == '*' && br.m[y][xtmp] == e.l)
+			x = c[1] - 1;
+			while (++px + (++x * 0) <= pc.xmax)
+				if (pc.m[py][px] == '*' && br.m[y][x] == br.e)
 					return (0);
 		}
 		return (1);
@@ -74,11 +71,11 @@ static void	init_score(t_score *score)
 
 static int	cal_score(t_piece pc, t_board br, int c[])
 {
-	int sc;
-	int x;
-	int y;
 	int bx;
 	int by;
+	int x;
+	int y;
+	int sc;
 
 	sc = 0;
 	y = pc.ymin - 1;
@@ -94,37 +91,31 @@ static int	cal_score(t_piece pc, t_board br, int c[])
 	return (sc);
 }
 
-void		attack(t_board br, t_piece *pc, t_player p, t_player e, int fd)
+void		attack(t_board br, t_piece *pc, int fd)
 {
 	int 	x;
 	int 	y;
 	int		coor[2];
-	int		score;
-	t_score	cscore;
+	t_score	score;
 
 	y = -1;
-	init_score(&cscore);
+	init_score(&score);
 	while (++y < br.h && (x = -1))
 		while (++x < br.w)
 		{
 			coor[0] = y;
 			coor[1] = x;
-			if (it_fits(*pc, br, e, coor) && it_touches(pc, br, p, coor))
+			if (it_fits(*pc, br, coor) && it_touches(pc, br, coor))
 			{
-				score = cal_score(*pc, br, coor);
-				cscore.score = (score < cscore.score) ? score : cscore.score;
-				cscore.x = (score < cscore.score) ? x : cscore.x;
-				cscore.y = (score < cscore.score) ? y : cscore.y;
-				ft_putendl_fd("", fd);
-				ft_putstr_fd("[", fd);
-				ft_putnbr_fd(y,fd);
-				ft_putstr_fd(", ", fd);
-				ft_putnbr_fd(x,fd);
-				ft_putstr_fd("] ", fd);
-				ft_putstr_fd("score = ", fd);
-				ft_putnbr_fd(score,fd);
-				ft_putendl_fd("", fd);
+				score.s = cal_score(*pc, br, coor);
+				if (score.s < score.score)
+				{
+					score.x = x;
+					score.y = y;
+					score.score = score.s;
+				}
+				put_coor(y - pc->ymin, x - pc->xmin);
+				return ;
 			}
 		}
-	print_coor(cscore.x - pc->xmin, cscore.y - pc->ymin);
 }

@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   c_proc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahmansou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/24 14:25:31 by ahmansou          #+#    #+#             */
-/*   Updated: 2019/09/24 14:25:33 by ahmansou         ###   ########.fr       */
+/*   Created: 2019/07/12 15:14:54 by ahmansou          #+#    #+#             */
+/*   Updated: 2019/07/13 19:11:05 by ahmansou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "ft_printf.h"
 
-int main()
+void	c_proc(const char *frm, va_list ap, int *i, int *sz)
 {
-	t_board		board;
-	t_piece		pc;
-	int			fd;
+	char	c;
+	int		indx;
 
-	fd = open("output", O_WRONLY);
-	get_player(&board);
-	while (1)
+	c = (char)va_arg(ap, int);
+	indx = *i;
+	if (frm[*i] == '-')
+		ft_putchar(c);
+	while (frm[*i] != 'c' && frm[*i])
 	{
-		get_assets(&board, &pc);
-		get_lims(&pc);
-		heatmap(&board);
-		attack(board, &pc, fd);
-		free2d(pc.m);
-		free2d(board.m);
+		if (frm[*i] >= '1' && frm[*i] <= '9')
+		{
+			*sz += put_space(ft_atoi(&frm[*i]) - 1);
+			break ;
+		}
+		(*i)++;
 	}
-	return(0);
+	if (frm[indx] != '-')
+		ft_putchar(c);
+	(*sz)++;
 }
