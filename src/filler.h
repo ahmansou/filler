@@ -58,7 +58,6 @@ void	get_assets(t_board *board, t_piece *pc);
 void	heatmap(t_board *br);
 void	get_lims(t_piece *pc);
 void	put_coor(int x, int y);
-// void	attack(t_board brd, t_piece pc, int fd);
 void	attack(t_board brd, t_piece pc);
 
 #endif

@@ -98,7 +98,6 @@ static int	calculate(t_piece pc, t_board brd, int x, int y)
 	return (score);
 }
 
-// void attack(t_board brd, t_piece pc, int fd)
 void attack(t_board brd, t_piece pc)
 {
 	t_score score;
@@ -109,28 +108,12 @@ void attack(t_board brd, t_piece pc)
 	score.score = 900000;
 	score.x = 0;
 	score.y = 0;
-	y = 0;
-	while (y < brd.h)
-	{
-		x = 0;
-		while (x < brd.w)
-		{
-			// ft_putendl_fd("", fd);
-			// ft_putstr_fd("[", fd);
-			// ft_putnbr_fd(y, fd);
-			// ft_putstr_fd(", ", fd);
-			// ft_putnbr_fd(x, fd);
-			// ft_putstr_fd("]", fd);
-			// if (it_fits(pc, brd, x, y) && it_puts(pc, brd, x, y, fd))
-			if (it_fits(pc, brd, x, y))
-			{
-				if (it_puts(pc, brd, x, y))
-				{
-					if (it_touchs(pc, brd, x, y) == 1)
+	y = -1;
+	while (++y < brd.h && (x = -1))
+		while (++x < brd.w)
+			if (it_fits(pc, brd, x, y) && it_puts(pc, brd, x, y) &&
+				it_touchs(pc, brd, x, y) == 1)
 					{
-						// ft_putendl_fd("\nit puts", fd);
-						// ft_putstr_fd("smallest score : ", fd);
-						// ft_putnbr_fd(score.score, fd);
 						cscore = calculate(pc, brd, x, y);
 						if (cscore < score.score)
 						{
@@ -138,36 +121,6 @@ void attack(t_board brd, t_piece pc)
 							score.x = x;
 							score.y = y;
 						}
-						// ft_putendl_fd("", fd);
-						// ft_putstr_fd("score : ", fd);
-						// ft_putnbr_fd(cscore, fd);
 					}
-					// else
-					// ft_putendl_fd("\nno touchy", fd);
-				}
-			}
-			// else 
-			// 	ft_putendl_fd("\nit doesnt fit", fd);
-			x++;
-		}
-		y++;
-	}
-	// ft_putendl_fd("", fd);
-	// ft_putstr_fd("score :", fd);
-	// ft_putnbr_fd(score.score, fd);
-	// ft_putstr_fd(" [", fd);
-	// ft_putnbr_fd(score.y, fd);
-	// ft_putstr_fd(", ", fd);
-	// ft_putnbr_fd(score.x, fd);
-	// ft_putendl_fd("]", fd);
-	// ft_putstr_fd(" actual [", fd);
-	// ft_putnbr_fd(score.y - pc.ymin, fd);
-	// ft_putstr_fd(", ", fd);
-	// ft_putnbr_fd(score.x - pc.xmin, fd);
-	// ft_putendl_fd("]", fd);
 	ft_printf("%d %d\n", score.y - pc.ymin, score.x - pc.xmin);
-	// ft_putnbr(score.y - pc.ymin);
-	// ft_putstr(", ");
-	// ft_putnbr(score.x - pc.xmin);
-	// ft_putendl("\n");
 }
