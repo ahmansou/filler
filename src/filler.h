@@ -13,7 +13,7 @@
 #ifndef FILLER_H
 # define FILLER_H
 
-# define BUFF_SIZE 11
+# define BUFF_SIZE 1
 # define FD_LIMIT 4864
 
 # include <stdlib.h>
@@ -55,12 +55,11 @@ typedef struct s_score
 int		get_next_line(const int fd, char **line);
 void	get_player(t_board *board);
 void	get_assets(t_board *board, t_piece *pc);
-void	free2d(char **s);
-void	free2dint(int **s);
 void	heatmap(t_board *br);
 void	get_lims(t_piece *pc);
-void	attack(t_board br, t_piece *pc, int fd);
 void	put_coor(int x, int y);
+// void	attack(t_board brd, t_piece pc, int fd);
+void	attack(t_board brd, t_piece pc);
 
 #endif
 

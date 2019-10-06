@@ -12,20 +12,15 @@
 
 #include "filler.h"
 
-static void	init_pc(t_piece *pc)
-{
-	pc->xmax = 0;
-	pc->xmin = 100;
-	pc->ymax = 0;
-	pc->ymin = 100;
-}
-
 void	get_lims(t_piece *pc)
 {
 	int x; 
 	int y;
 
-	init_pc(pc);
+	pc->xmax = 0;
+	pc->xmin = 100;
+	pc->ymax = 0;
+	pc->ymin = 100;
 	y = -1;
 	while (++y < pc->h && (x = -1))
 		while (++x < pc->w)

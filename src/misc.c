@@ -12,26 +12,6 @@
 
 #include "filler.h"
 
-void	free2d(char **s)
-{
-	int i;
-
-	i = 0;
-	while (s[i])
-		free(s[i++]);
-	free(s);
-}
-
-void	free2dint(int **s)
-{
-	int i;
-
-	i = 0;
-	while (s[i])
-		free(s[i++]);
-	free(s);
-}
-
 void	put_coor(int x, int y)
 {
 	ft_putnbr_fd(y, 1);
