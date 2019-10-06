@@ -68,6 +68,7 @@ void		get_player(t_board *board)
 	get_next_line(0, &line);
 	board->p = (line[10] == '1') ? 'O' : 'X';
 	board->e = (line[10] == '2') ? 'O' : 'X';
+	ft_strdel(&line);
 }
 
 void		get_assets(t_board *board, t_piece *pc)
