@@ -98,12 +98,12 @@ static int	calculate(t_piece pc, t_board brd, int x, int y)
 	return (score);
 }
 
-void attack(t_board brd, t_piece pc)
+void		attack(t_board brd, t_piece pc)
 {
-	t_score score;
-	int x;
-	int y;
-	int cscore;
+	t_score	score;
+	int		x;
+	int		y;
+	int		cscore;
 
 	score.score = 900000;
 	score.x = 0;
@@ -113,14 +113,14 @@ void attack(t_board brd, t_piece pc)
 		while (++x < brd.w)
 			if (it_fits(pc, brd, x, y) && it_puts(pc, brd, x, y) &&
 				it_touchs(pc, brd, x, y) == 1)
-					{
-						cscore = calculate(pc, brd, x, y);
-						if (cscore < score.score)
-						{
-							score.score = cscore;
-							score.x = x;
-							score.y = y;
-						}
-					}
+			{
+				cscore = calculate(pc, brd, x, y);
+				if (cscore < score.score)
+				{
+					score.score = cscore;
+					score.x = x;
+					score.y = y;
+				}
+			}
 	ft_printf("%d %d\n", score.y - pc.ymin, score.x - pc.xmin);
 }

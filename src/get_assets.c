@@ -31,14 +31,14 @@ static void	get_board(t_board *board, char *line)
 	{
 		if (get_next_line(0, &line) != 1)
 			return ;
-		board->m[i] =  ft_strdup(line + 4);
+		board->m[i] = ft_strdup(line + 4);
 		ft_strdel(&line);
 		i++;
 	}
 	board->m[i] = 0;
 }
 
-static void	get_piece(t_piece	*pc, char *line)
+static void	get_piece(t_piece *pc, char *line)
 {
 	char	*tmp;
 	int		i;
@@ -71,19 +71,22 @@ void		get_player(t_board *board)
 	ft_strdel(&line);
 }
 
-void		get_assets(t_board *board, t_piece *pc)
+int		get_assets(t_board *board, t_piece *pc)
 {
 	char	*line;
-	
-	while (get_next_line(0, &line))
+
+	while (get_next_line(0, &line) > 0)
 	{
-		if(!ft_strncmp(line, "Plateau", 7))
+		if (!ft_strncmp(line, "Plateau", 7))
 			get_board(board, line);
-		if(!ft_strncmp(line, "Piece", 5))
+		else if (!ft_strncmp(line, "Piece", 5))
 		{
 			get_piece(pc, line);
-			break ;
+			return (1) ;
 		}
+		else
+			return (0);
 		ft_strdel(&line);
 	}
+	return (0);
 }

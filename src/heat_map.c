@@ -19,13 +19,13 @@ static int	is_full(int **hm, int h, int w)
 
 	y = -1;
 	while (++y < h && (x = -1))
-			while (++x < w)
-				if (hm[y][x] == 0)
-					return (0);
+		while (++x < w)
+			if (hm[y][x] == 0)
+				return (0);
 	return (1);
 }
 
-static void init_heatmap(t_board *br)
+static void	init_heatmap(t_board *br)
 {
 	int x;
 	int y;

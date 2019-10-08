@@ -14,7 +14,7 @@
 
 void	get_lims(t_piece *pc)
 {
-	int x; 
+	int x;
 	int y;
 
 	pc->xmax = 0;
@@ -30,7 +30,7 @@ void	get_lims(t_piece *pc)
 				pc->xmax = (x > pc->xmax) ? x : pc->xmax;
 			}
 	y = pc->h;
-	while (--y >= 0 && (x =pc->w))
+	while (--y >= 0 && (x = pc->w))
 		while (--x >= 0)
 			if (pc->m[y][x] == '*')
 			{

@@ -23,7 +23,7 @@
 # include "../libft/libft.h"
 # include "../ft_printf/src/ft_printf.h"
 
-typedef struct	s_board
+typedef	struct	s_board
 {
 	char	**m;
 	int		**hm;
@@ -33,7 +33,7 @@ typedef struct	s_board
 	char	e;
 }				t_board;
 
-typedef struct	s_piece
+typedef	struct	s_piece
 {
 	char	**m;
 	int		w;
@@ -44,7 +44,7 @@ typedef struct	s_piece
 	int		ymax;
 }				t_piece;
 
-typedef struct s_score
+typedef	struct	s_score
 {
 	int x;
 	int y;
@@ -52,13 +52,11 @@ typedef struct s_score
 	int s;
 }				t_score;
 
-int		get_next_line(const int fd, char **line);
-void	get_player(t_board *board);
-void	get_assets(t_board *board, t_piece *pc);
-void	heatmap(t_board *br);
-void	get_lims(t_piece *pc);
-void	put_coor(int x, int y);
-void	attack(t_board brd, t_piece pc);
+int				get_next_line(const int fd, char **line);
+void			get_player(t_board *board);
+int			get_assets(t_board *board, t_piece *pc);
+void			heatmap(t_board *br);
+void			get_lims(t_piece *pc);
+void			attack(t_board brd, t_piece pc);
 
 #endif
-

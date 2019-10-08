@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "libft/libft.h"
 #include "filler.h"
 
 static	void		get_line(const int fd, char **tmpfd, char **line)
