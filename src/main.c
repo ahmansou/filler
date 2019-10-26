@@ -31,7 +31,6 @@ static void	free2di(int ***s, int sz)
 	while (x < sz)
 		free((*s)[x++]);
 	free((*s));
-	// s = NULL;
 }
 
 int	main(void)
