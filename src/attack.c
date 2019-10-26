@@ -19,7 +19,7 @@ static int	it_fits(t_piece pc, t_board brd, int x, int y)
 		return (0);
 	return (1);
 }
-
+ 
 static int	it_puts(t_piece pc, t_board brd, int x, int y)
 {
 	int px;

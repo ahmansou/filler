@@ -12,12 +12,6 @@
 
 #include "filler.h"
 
-static void init_vals(t_board *brd, t_piece *pc)
-{
-	brd->m = NULL;
-	brd->hm = NULL;
-	pc->m = NULL;
-}
 static void	freeme(t_piece *pc, t_board *board)
 {
 	int i;
@@ -25,12 +19,11 @@ static void	freeme(t_piece *pc, t_board *board)
 	i = 0;
 	while (i <= pc->h)
 		ft_strdel(&pc->m[i++]);
-	pc->m = NULL;
+	free(pc->m);
 	i = 0;
 	while (i <= board->h)
 		ft_strdel(&board->m[i++]);
-	board->m = NULL;
-	i = 0;
+	free(board->m);
 	free(board->hm);
 }
 
@@ -42,7 +35,6 @@ int	main(void)
 	get_player(&board);
 	while (1)
 	{
-		// init_vals(&board, &pc);
 		if (!get_assets(&board, &pc))
 			break ;
 		get_lims(&pc);
