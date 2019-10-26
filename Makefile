@@ -6,16 +6,15 @@
 #    By: ahmansou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/26 14:23:41 by ahmansou          #+#    #+#              #
-#    Updated: 2019/09/26 14:23:43 by ahmansou         ###   ########.fr        #
+#    Updated: 2019/10/26 16:45:00 by ahmansou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ahmansou.filler
 
 SRCS = src/main.c src/get_assets.c \
-		src/get_next_line.c src/misc.c \
+		src/get_next_line.c src/attack.c \
 		src/heat_map.c src/piece_proc.c \
-		src/attack.c
 
 OBJS = $(SRCS:.c=.o) 
 
