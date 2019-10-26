@@ -18,7 +18,7 @@ static void	get_board(t_board *board, char *line)
 	int		i;
 
 	tmp = line + 8;
-	ft_strdel(&line);
+	free(line);
 	board->h = ft_atoi(tmp);
 	while (*tmp >= '0' && *tmp <= '9')
 		tmp++;
