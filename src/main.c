@@ -12,19 +12,41 @@
 
 #include "filler.h"
 
-static void	freeme(t_piece *pc, t_board *board)
-{
-	int i;
+// static void	freeme(t_piece *pc, t_board *board)
+// {
+// 	int i;
 
-	i = 0;
-	while (i <= pc->h)
-		ft_strdel(&pc->m[i++]);
-	free(pc->m);
-	i = 0;
-	while (i <= board->h)
-		ft_strdel(&board->m[i++]);
-	free(board->m);
-	free(board->hm);
+// 	i = 0;
+// 	while (i <= pc->h)
+// 		ft_strdel(&pc->m[i++]);
+// 	free(pc->m);
+// 	i = 0;
+// 	while (i <= board->h)
+// 		ft_strdel(&board->m[i++]);
+// 	free(board->m);
+// 	free(board->hm);
+// }
+
+static void	free2d(char **s)
+{
+	int x;
+
+	x = 0;
+	while (s[x])
+		free(s[x++]);
+	free(s);
+	s = NULL;
+}
+
+static void	free2dint(int **s)
+{
+	int x;
+
+	x = 0;
+	// while (s[x])
+	// 	free(s[x++]);
+	free(s);
+	// s = NULL;
 }
 
 int	main(void)
@@ -40,7 +62,9 @@ int	main(void)
 		get_lims(&pc);
 		heatmap(&board);
 		attack(board, pc);
-		freeme(&pc, &board);
+		free2d(pc.m);
+		free2d(board.m);
+		free2dint(board.hm);
 	}
 	return (0);
 }
