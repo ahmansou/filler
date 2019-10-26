@@ -20,7 +20,7 @@ static void	get_board(t_board *board, char *line)
 
 	l = ft_strdup(line);
 	tmp = l + 8;
-	// free(line);
+	free(l);
 	board->h = ft_atoi(tmp);
 	while (*tmp >= '0' && *tmp <= '9')
 		tmp++;
