@@ -20,7 +20,7 @@ static void	get_board(t_board *board, char *line)
 
 	l = ft_strdup(line);
 	tmp = l + 8;
-	free(l);
+	// free(line);
 	board->h = ft_atoi(tmp);
 	while (*tmp >= '0' && *tmp <= '9')
 		tmp++;
@@ -88,11 +88,14 @@ int		get_assets(t_board *board, t_piece *pc)
 		else if (!ft_strncmp(line, "Piece", 5))
 		{
 			get_piece(pc, line);
+			ft_strdel(&line);
 			return (1) ;
 		}
 		else
+		{
+			ft_strdel(&line);
 			return (0);
-		ft_strdel(&line);
+		}
 	}
 	return (0);
 }
